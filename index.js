@@ -37,14 +37,12 @@ app.post('/criar',(requisicao, resposta)=>{
 
 
 app.get('/', (requisicao, resposta)=>{
-   const sql ='SELECT * FROM tarefas'
+  const sql ='SELECT * FROM tarefas'
 
-   conexao.query(sql,(erro, dados)=>{
+  conexao.query(sql,(erro, dados)=>{
     if(erro){
       return console.log(erro)
     }
-
-    
 
     const tarefas = dados.map((dado)=>{
       return{
@@ -54,10 +52,8 @@ app.get('/', (requisicao, resposta)=>{
       }
     })
 
-    
-   })
-
-    resposta.render('home')
+    resposta.render('home',{tarefas})  
+   }) 
 })
 
 const conexao =mysql.createConnection({
